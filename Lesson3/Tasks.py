@@ -37,14 +37,16 @@ while True:
         case '4':
             decimal_number = my_method.input_number(\
                 'Введите десятичное число для перевода в двоичное: ','int')
-            binary_number = my_method.dec_to_bin(decimal_number)
+            str_binary_number = my_method.dec_to_bin(decimal_number)
             output_result_string = 'Десятичное число ' + str(decimal_number) +\
-                 ' = ' + binary_number + ' в двоичном виде'
+                 ' = ' + str(str_binary_number) + ' в двоичном виде'
             break
         case '5':
             number = my_method.input_number(\
                 'Введите число для ряда Фибоначчи: ','natural')
-            output_result_string = 'Задача 5'
+            fibonacci_list = my_method.count_fibonacci(number,1)
+            output_result_string = '\nСписок чисел Фибоначчи, в том числе для отрицательных индексов для числа'\
+                + str(number) + ':\n' + str(fibonacci_list)
             break
         case 'q':
             input_key = None

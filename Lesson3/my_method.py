@@ -1,6 +1,4 @@
 import random
-from turtle import right
-
 
 def input_number(input_message, number_type='int'):
     while True:
@@ -76,20 +74,46 @@ def mult_pair_elements(num_list: list):
 def min_max_fraction_difference(num_list: list):
     if len(num_list) < 2:
         raise AttributeError('Ошибка параметра функции!')
-    max = round(num_list[0] - int(num_list[0]),3)
-    min = round(num_list[1] - int(num_list[1]),3)
+    max = round(num_list[0] - int(num_list[0]), 3)
+    min = round(num_list[1] - int(num_list[1]), 3)
     if max < min:
         max, min = min, max
-    for i in range(2,len(num_list)):
-        temp = round(num_list[i]- int(num_list[i]),3)
+    for i in range(2, len(num_list)):
+        temp = round(num_list[i] - int(num_list[i]), 3)
         if temp > max:
-             max = temp
-        elif temp< min:
+            max = temp
+        elif temp < min:
             min = temp
-    temp_str = str(round(max-min,3)).split('.')
+    temp_str = str(round(max-min, 3)).split('.')
     return int(temp_str[1])
 
 
 def dec_to_bin(dec_num: int):
-    bin_num = '000'
-    return bin_num
+    bin_num_list = []
+    if dec_num < 0:
+        bin_num_list.append('-')
+        dec_num *= -1
+    while dec_num > 0:
+        bin_num_list.insert(0, str(dec_num % 2))
+        dec_num = dec_num // 2
+    if bin_num_list.count('-') != 0:
+        bin_num_list.pop()
+        bin_num_list.insert(0, '-')
+    return ("".join(bin_num_list))
+
+
+def count_fibonacci(fib_num, is_negative: int = 0):
+    fib_list = [0]
+    if fib_num < 1:
+        return fib_list
+    fib_list.append(1)
+    for i in range(2, fib_num+1):
+        fib_list.append(fib_list[i-1] + fib_list[i-2])
+    if is_negative !=0:
+        neg_fib_list=[1,0]
+        for i in range(2, fib_num+1):
+            neg_fib_list.insert(0,fib_list[i]*(-1)**(i+1))
+        neg_fib_list.pop()
+        neg_fib_list.extend(fib_list)
+        fib_list = neg_fib_list
+    return fib_list
