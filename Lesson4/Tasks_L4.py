@@ -15,23 +15,24 @@ while True:
     input_key = input()
     match input_key:
         case '1':
-            accuracy = my_method.input_number('Введите точностью d для вычисления числа π: ','float')
-            # list_numbers = my_method.list_random_fill(list_size,0,50)
-            # sum_odd_elements = my_method.get_sum_odd_elements(list_numbers)
-            output_result_string = (f'число π c заданной точностью {accuracy}')
-            # + str(list_numbers)\  + ' равна ' + str(sum_odd_elements))
+            accuracy = my_method.input_number('Введите точностью d для вычисления числа π: ','str_float')
+            pi = my_method.pi_round(accuracy)
+            output_result_string = ('\nЧисло π c заданной точностью\t{0}\n\
+                 \rРавно\t\t\t\t{1}'.format(accuracy,pi))
             break
         case '2':
             list_size = my_method.input_number('Введите количество элементов списка: ','natural')
             list_numbers = my_method.list_random_fill(list_size,0,10)
-            # list_mult_pairs = my_method.mult_pair_elements(list_numbers)
-            output_result_string = (f'В последовательности {list_numbers}\n')
+            list_unique_elements = my_method.find_unique_elements(list_numbers)
+            output_result_string = (f'\nВ последовательности: {list_numbers}\n\
+                \rУникальные элементы: {list_unique_elements}')
             break
         case '3':
-            number_N = my_method.input_number('Введите количество элементов списка: ','natural')
-            # list_numbers = my_method.list_random_fill(list_size,1,10.0)
-            # difference = my_method.min_max_fraction_difference(list_numbers)
-            output_result_string = (f'Список простых множителей числа {number_N}\n')
+            number_N = my_method.input_number('Введите число N для составления списка простых множителей: ','natural')
+            list_factors = my_method.get_factors_list(number_N)
+            list_unique_factors = my_method.find_unique_elements(list_factors )
+            output_result_string = (f'Список простых множителей числа {number_N} равен {list_factors },\n\
+                \rа список уникальных множителей выглядит так {list_unique_factors}')
             break
         case '4':
             ctr_sum = my_method.fill_file_with_text(file_name_to_operate, str_to_lookup)
@@ -39,9 +40,6 @@ while True:
                 raise Warning(f'Ошибки записи в файл! {ctr_sum}')
             str_from_file = my_method.get_text_from_file(file_name_to_operate)
             str_result = my_method.check_words_in_string(str_from_file)
-            # decimal_number = my_method.input_number(\
-            #     'Введите десятичное число для перевода в двоичное: ','int')
-            # str_binary_number = my_method.dec_to_bin(decimal_number)
             output_result_string = (f'Скаченная из файла строка: {str_from_file}\n' +
                 f'обработанная строка, которая не содержит слов с цифрами: {str_result}')
             break
@@ -54,4 +52,4 @@ while True:
 
 if input_key != None:
     print(f'Результат {input_key} задачи:\
-    {output_result_string}.\nДо свидания!')
+    {output_result_string}\nДо свидания!')
