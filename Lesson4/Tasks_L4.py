@@ -1,7 +1,7 @@
 import os
 import my_method
 
-str_to_lookup: str = 'Мама сши8ла мне штаны и7з бере9зовой кор45ы 893.'
+str_to_lookup: str = 'Мама сшила м0не штаны и7з бере9зовой кор45ы 893'
 file_name_to_operate: str = 'file.txt'
 
 while True:
