@@ -1,6 +1,8 @@
+from gc import garbage
 import os
 from my_method import*
 
+garbage_str = 'абв'
 
 while True:
     os.system('cls||clear')
@@ -13,10 +15,13 @@ while True:
     input_key = input()
     match input_key:
         case '1':
-            with open('Lesson5/test_file_task1.txt', 'w') as data:
-                data.write('абв')
             str_form_file = get_text_from_file('Lesson5/test_file_task1.txt')
-            output_result_string = ('')
+            # str_form_file  = str_form_file .lower()
+            words_list = list(map(str,(str_form_file .lower()).split()))
+            words_list = [words_list[i] for i in range(len(words_list)) \
+                if words_list[i].find(garbage_str) == -1 ]
+            output_result_string = (f'\nРезультат выборки слов без \'{garbage_str}\' и из строки {str_form_file}:\n\
+                \b{words_list}')
             break
         case '2':
             words_number = input_number('Введите количество слов в строке: ')
@@ -44,3 +49,4 @@ while True:
 if input_key != None:
     print(f'Результат {input_key} задачи:\
     {output_result_string}\nДо свидания!')
+    fill_file_with_text('Lesson5/result_task'+str(input_key),output_result_string)

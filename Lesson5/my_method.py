@@ -1,3 +1,4 @@
+from cgitb import text
 import random
 
 def input_number(input_message, number_type='int'):
@@ -72,7 +73,7 @@ def list_random_fill(size: int, min_border=0, max_border=10):
 def fill_file_with_text(file_name: str, str_to_output: str) -> int:
     """Записывает в файл с именем file_name сроку str_to_output.\n
     Возвращает количество записанных символов control_sum """
-    with open(file_name, 'w') as data:
+    with open(file_name,'w') as data:
         control_sum: int = data.write(str_to_output)
         data.write('\n')
     return control_sum
